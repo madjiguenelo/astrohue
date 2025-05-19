@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You: In all of your shades</title>
+  <style>
+    body { background-color: #f5f5f5; font-family: Arial, sans-serif; text-align: center; margin: 2em; }
+
+    .planet-container {
+      display: block;
+      margin-top: 20px;
+    }
+    .planet-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .planet-box {
+      display: inline-block;
+      margin: 15px;
+      text-align: center;
+    }
+    .result-box {
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      border: 2px solid #333;
+      display: inline-block;
+      border-radius: 10px;
+      line-height: 150px;
+      font-size: 18px;
+      color: white;
+    }
+    select { padding: 10px; font-size: 16px; }
+    .planet-select { margin: 20px; }
+    .planet-name, .sign-name {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="planet-container" style="display:flex; flex-direction:column; align-items:center;">
+
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Sun ☀️</strong></div>
+      <div style="margin: 0 10px;"><select id="sunSign" onchange="updatePlanet('Sun')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="sunResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Moon 🌙</strong></div>
+      <div style="margin: 0 10px;"><select id="moonSign" onchange="updatePlanet('Moon')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="moonResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Mercury ☿️</strong></div>
+      <div style="margin: 0 10px;"><select id="mercurySign" onchange="updatePlanet('Mercury')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="mercuryResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Venus ♀️</strong></div>
+      <div style="margin: 0 10px;"><select id="venusSign" onchange="updatePlanet('Venus')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="venusResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Mars ♂️</strong></div>
+      <div style="margin: 0 10px;"><select id="marsSign" onchange="updatePlanet('Mars')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="marsResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Jupiter ♃</strong></div>
+      <div style="margin: 0 10px;"><select id="jupiterSign" onchange="updatePlanet('Jupiter')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="jupiterResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Saturn ♄</strong></div>
+      <div style="margin: 0 10px;"><select id="saturnSign" onchange="updatePlanet('Saturn')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="saturnResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Uranus ♅</strong></div>
+      <div style="margin: 0 10px;"><select id="uranusSign" onchange="updatePlanet('Uranus')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="uranusResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Neptune ♆</strong></div>
+      <div style="margin: 0 10px;"><select id="neptuneSign" onchange="updatePlanet('Neptune')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="neptuneResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Pluto ♇</strong></div>
+      <div style="margin: 0 10px;"><select id="plutoSign" onchange="updatePlanet('Pluto')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="plutoResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    
+    <div class="planet-box" style="display:flex; align-items:center; justify-content:center; margin-bottom: 15px;">
+      <div class="planet-name" style="width:120px; text-align:right;"><strong>Ascendant ⬆️</strong></div>
+      <div style="margin: 0 10px;"><select id="ascendantSign" onchange="updatePlanet('Ascendant')">
+  <option value="Aries">Aries ♈</option>
+  <option value="Taurus">Taurus ♉</option>
+  <option value="Gemini">Gemini ♊</option>
+  <option value="Cancer">Cancer ♋</option>
+  <option value="Leo">Leo ♌</option>
+  <option value="Virgo">Virgo ♍</option>
+  <option value="Libra">Libra ♎</option>
+  <option value="Scorpio">Scorpio ♏</option>
+  <option value="Sagittarius">Sagittarius ♐</option>
+  <option value="Capricorn">Capricorn ♑</option>
+  <option value="Aquarius">Aquarius ♒</option>
+  <option value="Pisces">Pisces ♓</option>
+</select></div>
+      <div class="result-box" id="ascendantResult" style="width: 50px; height: 30px; line-height: 30px;">&nbsp;</div>
+    </div>
+    </div>
+
+  <div id="colorSpectrum" style="display:flex; justify-content:center; margin-bottom:20px;"></div>
+  <h1>Interactive Astrology: Planet in Sign</h1>
+  <p>Choose the sign for each planet to see how the combination influences your astrological identity.</p>
+
+  
+    const planetSignColors = {
+  "Sun": {
+    "Aries": "#ff6347",
+    "Taurus": "#ffd700",
+    "Gemini": "#98fb98",
+    "Cancer": "#20b2aa",
+    "Leo": "#ff8c00",
+    "Virgo": "#800080",
+    "Libra": "#f4a460",
+    "Scorpio": "#8b0000",
+    "Sagittarius": "#adff2f",
+    "Capricorn": "#c0c0c0",
+    "Aquarius": "#7fff00",
+    "Pisces": "#8a2be2",
+  },
+  "Moon": {
+    "Aries": "#ff7960",
+    "Taurus": "#ffdb1a",
+    "Gemini": "#b1fcb1",
+    "Cancer": "#24c8bf",
+    "Leo": "#ff981a",
+    "Virgo": "#9a0099",
+    "Libra": "#f6b278",
+    "Scorpio": "#a40000",
+    "Sagittarius": "#b7ff49",
+    "Capricorn": "#cdcdcd",
+    "Aquarius": "#8cff1a",
+    "Pisces": "#9641e5",
+  },
+  "Mercury": {
+    "Aries": "#ff8e7a",
+    "Taurus": "#ffdf33",
+    "Gemini": "#c9fdc9",
+    "Cancer": "#2cd9d0",
+    "Leo": "#ffa333",
+    "Virgo": "#b300b3",
+    "Libra": "#f7bf90",
+    "Scorpio": "#be0000",
+    "Sagittarius": "#c1ff62",
+    "Capricorn": "#dadada",
+    "Aquarius": "#99ff33",
+    "Pisces": "#a358e8",
+  },
+  "Venus": {
+    "Aries": "#ffa494",
+    "Taurus": "#ffe34d",
+    "Gemini": "#e2fee2",
+    "Cancer": "#42ddd4",
+    "Leo": "#ffae4d",
+    "Virgo": "#cc00cc",
+    "Libra": "#f9cda8",
+    "Scorpio": "#d70000",
+    "Sagittarius": "#cbff7c",
+    "Capricorn": "#e6e6e6",
+    "Aquarius": "#a5ff4d",
+    "Pisces": "#af6eeb",
+  },
+  "Mars": {
+    "Aries": "#ffb9ad",
+    "Taurus": "#ffe766",
+    "Gemini": "#fafffa",
+    "Cancer": "#57e1d9",
+    "Leo": "#ffba66",
+    "Virgo": "#e600e6",
+    "Libra": "#fbdbbf",
+    "Scorpio": "#f10000",
+    "Sagittarius": "#d5ff95",
+    "Capricorn": "#f3f3f3",
+    "Aquarius": "#b2ff66",
+    "Pisces": "#bc85ee",
+  },
+  "Jupiter": {
+    "Aries": "#ffcfc6",
+    "Taurus": "#ffeb80",
+    "Gemini": "#ffffff",
+    "Cancer": "#6de5de",
+    "Leo": "#ffc680",
+    "Virgo": "#ff00ff",
+    "Libra": "#fce8d7",
+    "Scorpio": "#ff0b0b",
+    "Sagittarius": "#dfffae",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#bfff80",
+    "Pisces": "#c89bf1",
+  },
+  "Saturn": {
+    "Aries": "#ffe5e0",
+    "Taurus": "#ffef99",
+    "Gemini": "#ffffff",
+    "Cancer": "#82e9e3",
+    "Leo": "#ffd199",
+    "Virgo": "#ff1aff",
+    "Libra": "#fef6ef",
+    "Scorpio": "#ff2525",
+    "Sagittarius": "#e9ffc8",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#ccff99",
+    "Pisces": "#d4b2f4",
+  },
+  "Uranus": {
+    "Aries": "#fffaf9",
+    "Taurus": "#fff3b2",
+    "Gemini": "#ffffff",
+    "Cancer": "#98ece8",
+    "Leo": "#ffdcb2",
+    "Virgo": "#ff33ff",
+    "Libra": "#ffffff",
+    "Scorpio": "#ff3f3f",
+    "Sagittarius": "#f3ffe2",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#d9ffb2",
+    "Pisces": "#e1c8f7",
+  },
+  "Neptune": {
+    "Aries": "#ffffff",
+    "Taurus": "#fff7cc",
+    "Gemini": "#ffffff",
+    "Cancer": "#aef0ed",
+    "Leo": "#ffe8cc",
+    "Virgo": "#ff4dff",
+    "Libra": "#ffffff",
+    "Scorpio": "#ff5858",
+    "Sagittarius": "#fdfffb",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#e5ffcc",
+    "Pisces": "#eddefb",
+  },
+  "Pluto": {
+    "Aries": "#ffffff",
+    "Taurus": "#fffbe5",
+    "Gemini": "#ffffff",
+    "Cancer": "#c3f4f2",
+    "Leo": "#fff3e5",
+    "Virgo": "#ff66ff",
+    "Libra": "#ffffff",
+    "Scorpio": "#ff7272",
+    "Sagittarius": "#ffffff",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#f2ffe5",
+    "Pisces": "#f9f5fe",
+  },
+  "Ascendant": {
+    "Aries": "#ffffff",
+    "Taurus": "#ffffff",
+    "Gemini": "#ffffff",
+    "Cancer": "#d9f8f6",
+    "Leo": "#ffffff",
+    "Virgo": "#ff80ff",
+    "Libra": "#ffffff",
+    "Scorpio": "#ff8b8b",
+    "Sagittarius": "#ffffff",
+    "Capricorn": "#ffffff",
+    "Aquarius": "#ffffff",
+    "Pisces": "#ffffff",
+  },
+};
+
+    
+function updateSpectrum() {
+  const spectrum = document.getElementById("colorSpectrum");
+  spectrum.innerHTML = "";
+  const planets = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Ascendant"];
+  planets.forEach(planet => {
+    const sign = document.getElementById(planet.toLowerCase() + "Sign").value;
+    const color = planetSignColors[planet][sign];
+    const block = document.createElement("div");
+    block.style.backgroundColor = color;
+    block.style.width = "40px";
+    block.style.height = "20px";
+    block.style.margin = "0 3px";
+    block.title = planet + " in " + sign;
+    spectrum.appendChild(block);
+  });
+}
+
+function updatePlanet(planet) {
+  updateSpectrum();
+      const sign = document.getElementById(planet.toLowerCase() + 'Sign').value;
+      const color = planetSignColors[planet][sign];
+      document.getElementById(planet.toLowerCase() + 'Result').style.backgroundColor = color;
+    }
+  </script>
+</body>
+</html>
